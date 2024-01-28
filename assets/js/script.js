@@ -42,11 +42,8 @@ $("#search-button").on('click', function(event){
 function performSearch(cityName){
 
 
-    var apiURL_GeoCordinatesByLocationName = 
-        "http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}"
-    
-    
-    var apiURL_RequestByCityName = "https://api.openweathermap.org/data/2.5/weather?"
+    var apiURL_GeoCordinatesByLocationName = "http://api.openweathermap.org/geo/1.0/direct?"
+    var apiURL_TodaysWeatherByCityName = "https://api.openweathermap.org/data/2.5/weather?"
     
     var apiKey = "bacc1eea38f464a624c0b32d6374373c"   // OpenWeatherMap key
     
@@ -54,63 +51,79 @@ function performSearch(cityName){
     var cityLatitude = "44.34" // test values
     var cityLongtitude = "10.99"
 
-    queryURL = apiURL_RequestByCityName + "q=" + cityName + "&apiid=" + apiKey
+    console.log("**** NEW SEARCH FOR '" + cityName + "' WEATHER ****")
 
 
-
-    // Get Geocordinates for the selected City - CALL API
+    // API CALL 1 - Get Geocordinates for the selected City 
     // note : other API calls are nested within this one, as we need to have the Geocordoinates before continuing
 
-    queryURL = "http://api.openweathermap.org/geo/1.0/direct?" + "q=" + cityName + "&limit=1&appid=" + apiKey
-    console.log('query: ' +  queryURL)
+    queryURL = apiURL_GeoCordinatesByLocationName + "q=" + cityName + "&limit=1&appid=" + apiKey
+    console.log('Calling API : ' +  queryURL)
 
-
-    // Return data from API
+    // return data from API
     fetch(queryURL)
     .then(function (response) {
         return response.json()
     }).then(function (data) {
 
-        console.log(data)
-        
-        cityLatitude = data[0].lat
-        cityLongtitude = data[0].lon 
+        // check that data has been returned
+        if (data == "") {
+            console.log("WARNING : API returned NO geocoordinates for " + cityName)
+            return // STOP
+        }
 
-        // check that valid data has been returned
-        if (data[0].name == cityName) {
+        // check that the data returned is valid for the selected City
+        if (data[0].name.toUpperCase() == cityName.toUpperCase()) {
             console.log("Geocordinates found for : city = " + data[0].name + ", lat = " + cityLatitude + ", lon = " + cityLongtitude)
         }
         else {
-            console.log("Error : API returned geocoordinates for : " + data[0].name)
+            console.log("WARNING : API returned geocoordinates for " + data[0].name)
         }
+        console.log(data)
         
+        // get geocordinates
+        cityLatitude = data[0].lat
+        cityLongtitude = data[0].lon 
 
 
 
-        // CALL API - Get Todays Weather for the selected City
+        // API CALL 2 - Get Todays Weather for the selected City
 
-    /*     // works
-    queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=bacc1eea38f464a624c0b32d6374373c"
-    console.log('query: ' +  queryURL)
-    alert('query: ' +  queryURL) */
+        queryURL = apiURL_TodaysWeatherByCityName + "lat=" + cityLatitude + "&lon=" + cityLongtitude + "&appid=" + apiKey
+        console.log('Calling API : ' +  queryURL)
 
-        queryURL = apiURL_RequestByCityName + "lat=" + cityLatitude + "&lon=" + cityLongtitude + "&appid=" + apiKey
-        console.log('query: ' +  queryURL)
-
-        // Return data from API
+        // return data from API
         fetch(queryURL)
         .then(function (response) {
             return response.json()
         }).then(function (data) {
 
-            console.log(data);
-        
+            console.log("Todays Weather in " + data.name + " : ")
+            console.log(data)
+            
         })
 
 
+/*         // API CALL 3 - Get 5 Day Forecast for the selected City
+        
+        queryURL = apiURL_RequestByCityName + "lat=" + cityLatitude + "&lon=" + cityLongtitude + "&appid=" + apiKey
+        console.log('Calling API : ' +  queryURL)
+
+        // return data from API
+        fetch(queryURL)
+        .then(function (response) {
+            return response.json()
+        }).then(function (data) {
+
+            console.log("5 Day Forecast for " + data.name + " : ")
+            console.log(data)
+            
+        }) */
 
 
-    });
+
+
+    })
 
 
 
