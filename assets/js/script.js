@@ -12,8 +12,6 @@
 // ------------------------------------
 
 // create references to html elements
-var txtSearchText = document.querySelector("#search-input")  // reference by id
-var btnSearchButton = document.querySelector("#search-button")  // reference by id
 
 
 // Event Listeners
@@ -21,12 +19,16 @@ var btnSearchButton = document.querySelector("#search-button")  // reference by 
 // - Search button "click" event
 $("#search-button").on('click', function(event){
     
-    //alert("event")
+    event.preventDefault()
 
-    var city = $("#search-input").val()
-
-    performSearch(city)
-
+    // get the City name typed by the user and search for its weather
+    var userInput = $("#search-input").val().trim()
+    if (userInput === "") {
+        alert("Please enter a City name")
+    }
+    else {
+        performSearch(userInput)
+    }
  
 })
 
@@ -36,6 +38,28 @@ $("#search-button").on('click', function(event){
 
 // Search for a Cities weather, Display Results and create a Button in the search "History" section 
 function performSearch(cityName){
+
     alert("Serching for : " + cityName)
+
+    var apiURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+    var key = "ECZoOAlTRGOJAywEGRUYfKipBHddQ9EE"; // NYT key
+    var queryURL;
+
+    queryURL = apiURL + "q=" + cityName + "&api-key=" + key;
+    
+
+    alert('query: ' +  queryURL)
+
+
+ 
+    console.log('query: ' +  queryURL)
+
+    
+
+
+
+    
+
+
 
 }
