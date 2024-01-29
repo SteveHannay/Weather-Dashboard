@@ -49,7 +49,7 @@ $("#history").on('click', '.history-btn', function(event){
 function performWeatherSearch(cityName, addHistoryButton){
 
     // Declare variables and initialise
-    var apiURL_GeoCordinatesByLocationName = "http://api.openweathermap.org/geo/1.0/direct?"
+    var apiURL_GeoCordinatesByLocationName = "https://api.openweathermap.org/geo/1.0/direct?"
     var apiURL_TodaysWeatherByCityName = "https://api.openweathermap.org/data/2.5/weather?"
     var apiURL_5DayForecastByCityName = "https://api.openweathermap.org/data/2.5/forecast?"
 
