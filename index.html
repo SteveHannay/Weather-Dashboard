@@ -70,10 +70,20 @@
         <!-- Todays Weather --> 
         <section id="today" class="mt-3" role="region" aria-live="polite">
 
-          <!-- Icon --> 
-          <div id="icon"><img id="todays-weather-icon" src="" alt=""></div>
+          <!-- City, Date and Weather Icon (same row) --> 
+          <div id="container" style="white-space:nowrap">
+            <div id="todays-weather-citydate" style="display:inline; white-space:nowrap;"></div>
+            <div style="display:inline;"> <img id="todays-weather-icon" src="" alt=""> </div>
+          </div>
 
+          <!-- Temp -->
+          <div id="todays-weather-temp"></div>
+ 
+          <!-- Wind -->
+          <div id="todays-weather-wind"></div>
 
+          <!-- Humidity -->
+          <div id="todays-weather-humidity"></div>
 
         </section>
 
