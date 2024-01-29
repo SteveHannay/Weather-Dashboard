@@ -85,10 +85,11 @@ function performWeatherSearch(cityName, addHistoryButton){
         return response.json()
     }).then(function (data) {
 
-        // check that data has been returned
+        // check that Geocoordinates have been returned for the selected City
         if (data == "") {
             console.log("WARNING : API returned NO geocoordinates for " + cityName)
-            return // STOP
+            addHistoryButton = false // dont add a history button
+            return 
         }
 
         // get geocordinates
@@ -331,7 +332,9 @@ function performWeatherSearch(cityName, addHistoryButton){
     if (addHistoryButton) {
 
         var historyButtonEl = $("<button>")
-        .addClass("p-2 text-center history-btn saveBtn fa fa-save")
+        .addClass(" history-btn")
+        .css("width","150px")
+        .css("height","30px")
         .attr("type", "button")
         .attr("data-city", cityName)                  // store selected City with button
         .text(cityName)
