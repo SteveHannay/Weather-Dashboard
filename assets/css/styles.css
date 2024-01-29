@@ -1,3 +1,31 @@
+/* 
+    CSS for Challenge 08 
+    Developer - Steve Hannay 
+    First Created - 27th January 2024
+
+*/
 
 
-  
+/* "Search" Button */
+#search-button {
+
+    width: 190px;
+    margin-top: 10px;    
+}
+
+
+
+/* "Todays Weather" Section */ 
+#today {
+    border: 1px solid black; 
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+
+
+/* "5 Day Forecast" Section */ 
+#forecast {
+    /* border: 1px solid black; */ 
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }

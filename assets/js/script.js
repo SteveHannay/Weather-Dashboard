@@ -332,9 +332,10 @@ function performWeatherSearch(cityName, addHistoryButton){
     if (addHistoryButton) {
 
         var historyButtonEl = $("<button>")
-        .addClass(" history-btn")
-        .css("width","150px")
-        .css("height","30px")
+        .addClass("history-btn")
+        .css("width","190px")
+        .css("height","35px")
+        .css("margin-top","10px")
         .attr("type", "button")
         .attr("data-city", cityName)                  // store selected City with button
         .text(cityName)
