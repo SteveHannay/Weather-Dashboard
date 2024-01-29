@@ -77,7 +77,7 @@ function performWeatherSearch(cityName, addHistoryButton){
     // note : other API calls are nested within this one, as we need to have the Geocordoinates before continuing
 
     queryURL = apiURL_GeoCordinatesByLocationName + "q=" + cityName + "&limit=1&appid=" + apiKey
-    console.log('API CALL 1 : ' +  queryURL)
+    console.log('API CALL 1')
 
     // return data from API
     fetch(queryURL)
@@ -109,7 +109,7 @@ function performWeatherSearch(cityName, addHistoryButton){
         // API CALL 2 - Get Todays Weather for the selected City
 
         queryURL = apiURL_TodaysWeatherByCityName + "lat=" + cityLatitude + "&lon=" + cityLongtitude + "&units=metric&appid=" + apiKey
-        console.log('API CALL 2 : ' +  queryURL)
+        console.log('API CALL 2')
 
         // return data from API
         fetch(queryURL)
@@ -146,7 +146,7 @@ function performWeatherSearch(cityName, addHistoryButton){
         // API CALL 3 - Get 5 Day Forecast for the selected City
         
         queryURL = apiURL_5DayForecastByCityName + "lat=" + cityLatitude + "&lon=" + cityLongtitude + "&units=metric&appid=" + apiKey
-        console.log('API CALL 3 : ' +  queryURL)
+        console.log('API CALL 3')
 
         // return data from API
         fetch(queryURL)
