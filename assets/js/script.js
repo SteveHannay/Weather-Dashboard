@@ -8,12 +8,6 @@
 */
 
 
-// Define Variables and Event Listeners
-// ------------------------------------
-
-// create references to html elements
-
-
 // Event Listeners
 
 // - Main "Search" button "click" event
@@ -28,18 +22,31 @@ $("#search-button").on('click', function(event){
     }
     else {
         // Search for the Cities weather, Display Results and create a Button in the search "History" section 
-        performWeatherSearch(userInput)
+        performWeatherSearch(userInput, true)
     }
  
 })
 
+// - History button "click" event
+$("#history").on('click', '.history-btn', function(event){
+
+    event.preventDefault()
+
+    // Get the City from the clicked button
+    var historyButton = $(event.target)
+    var buttonCity = historyButton.text()   
+    
+    // Search for the Cities weather, Display Results (do NOT create a Button in the search "History" section) 
+    performWeatherSearch(buttonCity, false)
+ 
+})
 
 
 // MAIN Logic
 // ----------
 
 // Search for a Cities weather, Display Results and create a Button in the search "History" section 
-function performWeatherSearch(cityName){
+function performWeatherSearch(cityName, addHistoryButton){
 
     // Declare variables and initialise
     var apiURL_GeoCordinatesByLocationName = "http://api.openweathermap.org/geo/1.0/direct?"
@@ -190,9 +197,6 @@ function performWeatherSearch(cityName){
                 }
             }
 
-
-
-
             // Forecast Day 2
 
             searchString = forecastDay2.format("YYYY-MM-DD") + " 12:00:00" 
@@ -223,8 +227,6 @@ function performWeatherSearch(cityName){
                     
                 }
             }
-
-
 
             // Forecast Day 3
 
@@ -257,7 +259,6 @@ function performWeatherSearch(cityName){
                 }
             }
 
-
             // Forecast Day 4
 
             searchString = forecastDay4.format("YYYY-MM-DD") + " 12:00:00" 
@@ -289,43 +290,58 @@ function performWeatherSearch(cityName){
                 }
             }
 
-                        // Forecast Day 5
+            // Forecast Day 5
 
-                        searchString = forecastDay5.format("YYYY-MM-DD") + " 12:00:00" 
+            searchString = forecastDay5.format("YYYY-MM-DD") + " 12:00:00" 
 
-                        // find forecast
-                        for (i=0; i< data.list.length ; i++) {
-                            if (data.list[i].dt_txt == searchString) {
+            // find forecast
+            for (i=0; i< data.list.length ; i++) {
+                if (data.list[i].dt_txt == searchString) {
             
-                                // get forecast weather
-                                weatherDescription = data.list[i].weather[0].description
+                    // get forecast weather
+                    weatherDescription = data.list[i].weather[0].description
             
-                                iconCode = data.list[i].weather[0].icon
-                                queryURL =  iconURL + iconCode + ".png"
+                    iconCode = data.list[i].weather[0].icon
+                    queryURL =  iconURL + iconCode + ".png"
             
-                                weatherTemp = data.list[i].main.temp
-                                weatherWind = data.list[i].wind.speed
-                                weatherHumidity = data.list[i].main.humidity
+                    weatherTemp = data.list[i].main.temp
+                    weatherWind = data.list[i].wind.speed
+                    weatherHumidity = data.list[i].main.humidity
             
-                                // display forecast weather
-                                $('#day5-date').text(forecastDay5.format("D/M/YYYY"))
+                    // display forecast weather
+                    $('#day5-date').text(forecastDay5.format("D/M/YYYY"))
             
-                                $('#day5-icon').attr("src", queryURL);
-                                $('#day5-icon').attr("alt", weatherDescription);
+                    $('#day5-icon').attr("src", queryURL);
+                    $('#day5-icon').attr("alt", weatherDescription);
                     
-                                $('#day5-temp').text("Temp : " + weatherTemp + " °C")
-                                $('#day5-wind').text("Wind : " + weatherWind + " KPH")
-                                $('#day5-humidity').text("Humidity : " + weatherHumidity + " %")
+                    $('#day5-temp').text("Temp : " + weatherTemp + " °C")
+                    $('#day5-wind').text("Wind : " + weatherWind + " KPH")
+                    $('#day5-humidity').text("Humidity : " + weatherHumidity + " %")
                                 
-                            }
-                        }
+                }
+            }
+
+        }) // end fetch weather
+
+    }) // end fetch city geocode
 
 
-        })
+
+    // Create a Button for the selected City in the search "History" section 
+    if (addHistoryButton) {
+
+        var historyButtonEl = $("<button>")
+        .addClass("p-2 text-center history-btn saveBtn fa fa-save")
+        .attr("type", "button")
+        .attr("data-city", cityName)                  // store selected City with button
+        .text(cityName)
+
+        $("#history").append(historyButtonEl)
+
+    }
 
 
-
-
-    })
+    // Clear the "Search Input" Text
+    $("#search-input").val("")
 
 }
