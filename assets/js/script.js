@@ -54,6 +54,12 @@ function performWeatherSearch(cityName){
     var cityLatitude = "" 
     var cityLongtitude = ""
 
+    var weatherDescription = ""
+    var iconCode = ""
+    var weatherTemp = ""
+    var weatherWind = ""
+    var weatherHumidity = ""
+
     var todaysDateUKFormatted = dayjs().format("D/M/YYYY")
 
 
@@ -108,15 +114,14 @@ function performWeatherSearch(cityName){
             console.log(data)
 
             // get todays weather
-            var weatherDescription = data.weather[0].description
+            weatherDescription = data.weather[0].description
 
-            var iconCode = data.weather[0].icon
+            iconCode = data.weather[0].icon
             queryURL =  iconURL + iconCode + ".png"
-            console.log("image : " + queryURL)
 
-            var weatherTemp = data.main.temp
-            var weatherWind = data.wind.speed
-            var weatherHumidity = data.main.humidity
+            weatherTemp = data.main.temp
+            weatherWind = data.wind.speed
+            weatherHumidity = data.main.humidity
 
             // display todays weather
             $('#todays-weather-citydate').text(data.name + " (" + todaysDateUKFormatted + ") ")
@@ -133,7 +138,7 @@ function performWeatherSearch(cityName){
 
         // API CALL 3 - Get 5 Day Forecast for the selected City
         
-        queryURL = apiURL_5DayForecastByCityName + "lat=" + cityLatitude + "&lon=" + cityLongtitude + "&units=metri&appid=" + apiKey
+        queryURL = apiURL_5DayForecastByCityName + "lat=" + cityLatitude + "&lon=" + cityLongtitude + "&units=metric&appid=" + apiKey
         console.log('API CALL 3 : ' +  queryURL)
 
         // return data from API
@@ -145,21 +150,177 @@ function performWeatherSearch(cityName){
             console.log("5 Day Forecast for " + data.city.name + " : ")
             console.log(data)
 
-            var forecastDate = dayjs() // initialise
+            // Create the Dates which will be used for selecting the individual forecasts
+            const forecastDay1 = dayjs().add(1, 'day')
+            const forecastDay2 = dayjs().add(2, 'day')
+            const forecastDay3 = dayjs().add(3, 'day')
+            const forecastDay4 = dayjs().add(4, 'day')
+            const forecastDay5 = dayjs().add(5, 'day')
+            var searchString = ""
 
 
             // Forecast Day 1
 
-            // get next forecast date and convert to a DT code 
+            searchString = forecastDay1.format("YYYY-MM-DD") + " 12:00:00" 
 
-            // get index of MIDDAY forcast for forecast date
+            // find forecast
+            for (i=0; i< data.list.length ; i++) {
+                if (data.list[i].dt_txt == searchString) {
 
-            // get forecast weather
+                    // get forecast weather
+                    weatherDescription = data.list[i].weather[0].description
 
-            // display forecast weather
+                    iconCode = data.list[i].weather[0].icon
+                    queryURL =  iconURL + iconCode + ".png"
+
+                    weatherTemp = data.list[i].main.temp
+                    weatherWind = data.list[i].wind.speed
+                    weatherHumidity = data.list[i].main.humidity
+
+                    // display forecast weather
+                    $('#day1-date').text(forecastDay1.format("D/M/YYYY"))
+
+                    $('#day1-icon').attr("src", queryURL);
+                    $('#day1-icon').attr("alt", weatherDescription);
+        
+                    $('#day1-temp').text("Temp : " + weatherTemp + " °C")
+                    $('#day1-wind').text("Wind : " + weatherWind + " KPH")
+                    $('#day1-humidity').text("Humidity : " + weatherHumidity + " %")
+                    
+                }
+            }
 
 
+
+
+            // Forecast Day 2
+
+            searchString = forecastDay2.format("YYYY-MM-DD") + " 12:00:00" 
+
+            // find forecast
+            for (i=0; i< data.list.length ; i++) {
+                if (data.list[i].dt_txt == searchString) {
+
+                    // get forecast weather
+                    weatherDescription = data.list[i].weather[0].description
+
+                    iconCode = data.list[i].weather[0].icon
+                    queryURL =  iconURL + iconCode + ".png"
+
+                    weatherTemp = data.list[i].main.temp
+                    weatherWind = data.list[i].wind.speed
+                    weatherHumidity = data.list[i].main.humidity
+
+                    // display forecast weather
+                    $('#day2-date').text(forecastDay2.format("D/M/YYYY"))
+
+                    $('#day2-icon').attr("src", queryURL);
+                    $('#day2-icon').attr("alt", weatherDescription);
+        
+                    $('#day2-temp').text("Temp : " + weatherTemp + " °C")
+                    $('#day2-wind').text("Wind : " + weatherWind + " KPH")
+                    $('#day2-humidity').text("Humidity : " + weatherHumidity + " %")
+                    
+                }
+            }
+
+
+
+            // Forecast Day 3
+
+            searchString = forecastDay3.format("YYYY-MM-DD") + " 12:00:00" 
+
+            // find forecast
+            for (i=0; i< data.list.length ; i++) {
+                if (data.list[i].dt_txt == searchString) {
+
+                    // get forecast weather
+                    weatherDescription = data.list[i].weather[0].description
+
+                    iconCode = data.list[i].weather[0].icon
+                    queryURL =  iconURL + iconCode + ".png"
+
+                    weatherTemp = data.list[i].main.temp
+                    weatherWind = data.list[i].wind.speed
+                    weatherHumidity = data.list[i].main.humidity
+
+                    // display forecast weather
+                    $('#day3-date').text(forecastDay3.format("D/M/YYYY"))
+
+                    $('#day3-icon').attr("src", queryURL);
+                    $('#day3-icon').attr("alt", weatherDescription);
+        
+                    $('#day3-temp').text("Temp : " + weatherTemp + " °C")
+                    $('#day3-wind').text("Wind : " + weatherWind + " KPH")
+                    $('#day3-humidity').text("Humidity : " + weatherHumidity + " %")
+                    
+                }
+            }
+
+
+            // Forecast Day 4
+
+            searchString = forecastDay4.format("YYYY-MM-DD") + " 12:00:00" 
+
+            // find forecast
+            for (i=0; i< data.list.length ; i++) {
+                if (data.list[i].dt_txt == searchString) {
+
+                    // get forecast weather
+                    weatherDescription = data.list[i].weather[0].description
+
+                    iconCode = data.list[i].weather[0].icon
+                    queryURL =  iconURL + iconCode + ".png"
+
+                    weatherTemp = data.list[i].main.temp
+                    weatherWind = data.list[i].wind.speed
+                    weatherHumidity = data.list[i].main.humidity
+
+                    // display forecast weather
+                    $('#day4-date').text(forecastDay4.format("D/M/YYYY"))
+
+                    $('#day4-icon').attr("src", queryURL);
+                    $('#day4-icon').attr("alt", weatherDescription);
+        
+                    $('#day4-temp').text("Temp : " + weatherTemp + " °C")
+                    $('#day4-wind').text("Wind : " + weatherWind + " KPH")
+                    $('#day4-humidity').text("Humidity : " + weatherHumidity + " %")
+                    
+                }
+            }
+
+                        // Forecast Day 5
+
+                        searchString = forecastDay5.format("YYYY-MM-DD") + " 12:00:00" 
+
+                        // find forecast
+                        for (i=0; i< data.list.length ; i++) {
+                            if (data.list[i].dt_txt == searchString) {
             
+                                // get forecast weather
+                                weatherDescription = data.list[i].weather[0].description
+            
+                                iconCode = data.list[i].weather[0].icon
+                                queryURL =  iconURL + iconCode + ".png"
+            
+                                weatherTemp = data.list[i].main.temp
+                                weatherWind = data.list[i].wind.speed
+                                weatherHumidity = data.list[i].main.humidity
+            
+                                // display forecast weather
+                                $('#day5-date').text(forecastDay5.format("D/M/YYYY"))
+            
+                                $('#day5-icon').attr("src", queryURL);
+                                $('#day5-icon').attr("alt", weatherDescription);
+                    
+                                $('#day5-temp').text("Temp : " + weatherTemp + " °C")
+                                $('#day5-wind').text("Wind : " + weatherWind + " KPH")
+                                $('#day5-humidity').text("Humidity : " + weatherHumidity + " %")
+                                
+                            }
+                        }
+
+
         })
 
 
