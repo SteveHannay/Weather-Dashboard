@@ -69,18 +69,23 @@ No installation is necessary.
 
 ## Usage
 
-A weather forecast consists of a "Todays Weather" section and a "5 Day Forecast" section.
 
-Forecasts include information of Temperature, Wind Speed and Humidity - as well as a descriptive icon.
+When the webpage loads the Weather for London will be selected by default.
 
 
-When the webpage loads the Weather for London will be displayed by default.
+For the selected City
 
-The user can type in a City name and the weather for that City will be displayed.
+- A weather forecast will be displayed, consisting of a "Todays Weather" section and a "5 Day Forecast" section.
 
-After a user types a City name, a "History" button for that City will be created. The button's text will be the City name.
+- Forecasts information includes Temperature, Wind Speed and Humidity - as well as a descriptive icon.
 
-Clicking on a "History" button will display the weather forecast for that City.
+
+The user can type in a City name and click the "Search" button to select a different city. The cities weather will be displayed.
+
+
+After a user types a City name, a "History" button for that City will be created. The history button's text will be the City name.
+
+Clicking on any "History" button will select its associated City. The cities weather forecast will be displayed.
 
 
 
