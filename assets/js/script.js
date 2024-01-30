@@ -45,6 +45,13 @@ $("#history").on('click', '.history-btn', function(event){
 // MAIN Logic
 // ----------
 
+// Initiate by viewing data for London
+init()
+function init(){
+    performWeatherSearch("London")
+}
+
+
 // Search for a Cities weather, Display Results and create a Button in the search "History" section 
 function performWeatherSearch(cityName, addHistoryButton){
 
