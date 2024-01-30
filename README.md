@@ -77,7 +77,7 @@ For the selected City
 
 - A weather forecast will be displayed, consisting of a "Todays Weather" section and a "5 Day Forecast" section.
 
-- Forecasts information includes Temperature, Wind Speed and Humidity - as well as a descriptive icon.
+- Forecast information includes Temperature, Wind Speed and Humidity - as well as a descriptive icon.
 
 
 The user can type in a City name and click the "Search" button to select a different city. The cities weather will be displayed.
@@ -86,8 +86,6 @@ The user can type in a City name and click the "Search" button to select a diffe
 After a user types a City name, a "History" button for that City will be created. The history button's text will be the City name.
 
 Clicking on any "History" button will select its associated City. The cities weather forecast will be displayed.
-
-
 
 
 Here are screenshots of the Work Day Scheduler created for the project :
