@@ -6,26 +6,46 @@
 */
 
 
-/* "Search" Button */
-#search-button {
-
-    width: 190px;
-    margin-top: 10px;    
+/* Flex */
+.flexbox {
+    display: flex;
+    flex-direction: row;
 }
 
 
 
-/* "Todays Weather" Section */ 
+/* "Search" Button */
+#search-button {
+
+    width: 190px;
+    height: 35px;
+    margin-top: 10px;    
+    color: white;
+    background: cornflowerblue;
+}
+
+
+
+/* "Todays Weather"  */ 
 #today {
     border: 1px solid black; 
     padding-left: 10px;
     padding-bottom: 10px;
+
+    color: white;
+    background: darkslateblue;
   }
 
 
-/* "5 Day Forecast" Section */ 
-#forecast {
-    /* border: 1px solid black; */ 
+/* "5 Day Forecast"  */ 
+.forecast-day {
+    border: 1px solid black; 
+    color: white;
+    background: darkslateblue;
+
+    width: 200px;
+
     padding-left: 10px;
-    padding-bottom: 10px;
-  }
+    padding-top: 10px;  
+    padding-bottom: 10px;  
+}

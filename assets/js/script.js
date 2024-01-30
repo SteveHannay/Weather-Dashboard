@@ -57,6 +57,8 @@ function performWeatherSearch(cityName, addHistoryButton){
     
     var iconURL = "https://openweathermap.org/img/w/"   // For displaying icons in an image
 
+    var forecastTimeOfDay = "00:00:00"                  // time of day for selecting forecasts 
+
     var queryURL = ""
     var cityLatitude = "" 
     var cityLongtitude = ""
@@ -169,7 +171,7 @@ function performWeatherSearch(cityName, addHistoryButton){
 
             // Forecast Day 1
 
-            searchString = forecastDay1.format("YYYY-MM-DD") + " 12:00:00" 
+            searchString = forecastDay1.format("YYYY-MM-DD") + " " + forecastTimeOfDay 
 
             // find forecast
             for (i=0; i< data.list.length ; i++) {
@@ -200,7 +202,7 @@ function performWeatherSearch(cityName, addHistoryButton){
 
             // Forecast Day 2
 
-            searchString = forecastDay2.format("YYYY-MM-DD") + " 12:00:00" 
+            searchString = forecastDay2.format("YYYY-MM-DD")  + " " + forecastTimeOfDay 
 
             // find forecast
             for (i=0; i< data.list.length ; i++) {
@@ -231,7 +233,7 @@ function performWeatherSearch(cityName, addHistoryButton){
 
             // Forecast Day 3
 
-            searchString = forecastDay3.format("YYYY-MM-DD") + " 12:00:00" 
+            searchString = forecastDay3.format("YYYY-MM-DD")  + " " + forecastTimeOfDay 
 
             // find forecast
             for (i=0; i< data.list.length ; i++) {
@@ -262,7 +264,7 @@ function performWeatherSearch(cityName, addHistoryButton){
 
             // Forecast Day 4
 
-            searchString = forecastDay4.format("YYYY-MM-DD") + " 12:00:00" 
+            searchString = forecastDay4.format("YYYY-MM-DD")  + " " + forecastTimeOfDay 
 
             // find forecast
             for (i=0; i< data.list.length ; i++) {
@@ -293,7 +295,7 @@ function performWeatherSearch(cityName, addHistoryButton){
 
             // Forecast Day 5
 
-            searchString = forecastDay5.format("YYYY-MM-DD") + " 12:00:00" 
+            searchString = forecastDay5.format("YYYY-MM-DD")  + " " + forecastTimeOfDay 
 
             // find forecast
             for (i=0; i< data.list.length ; i++) {
@@ -322,9 +324,9 @@ function performWeatherSearch(cityName, addHistoryButton){
                 }
             }
 
-        }) // end fetch weather
+        }) // end fetch weather data
 
-    }) // end fetch city geocode
+    }) // end fetch city geocode data
 
 
 
@@ -337,7 +339,6 @@ function performWeatherSearch(cityName, addHistoryButton){
         .css("height","35px")
         .css("margin-top","10px")
         .attr("type", "button")
-        .attr("data-city", cityName)                  // store selected City with button
         .text(cityName)
 
         $("#history").append(historyButtonEl)
